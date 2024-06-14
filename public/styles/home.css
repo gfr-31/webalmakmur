@@ -1,0 +1,310 @@
+* {
+    scroll-behavior: smooth;
+}
+
+.tengah {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fb-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e4e4e4;
+    color: rgb(165, 165, 165);
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+    margin-inline-start: 10px;
+}
+
+.fb-button:hover {
+    background-color: #00a316;
+    color: rgb(255, 255, 255);
+    transform: scale(1.1);
+}
+
+.navbar {
+    background-color: #ffffff;
+    font-size: 17px;
+    padding: 1px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-size: large;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    margin-right: 30px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    display: none;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+section {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Carousel */
+.image-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.589);
+    z-index: 1;
+}
+
+#carousel {
+    height: 750px;
+}
+
+.image-zoom-container {
+    overflow: hidden;
+    position: relative;
+    margin-inline: 10px;
+}
+
+.zoomable {
+    transition: transform 5s ease;
+    -webkit-transition: transform 5s ease;
+    -moz-transition: transform 5s ease;
+    -ms-transition: transform 5s ease;
+    -o-transition: transform 5s ease;
+}
+
+.zoomable:hover {
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+}
+
+#visimisi {
+    background-size: cover;
+    background-position: center;
+    /* color: #46474d; */
+    color: #ffffff;
+
+    animation-name: animasimasuk;
+    animation-duration: 6s;
+}
+
+marquee {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-size: large;
+}
+
+#col-1 {
+    animation-name: animasimasukkanan;
+    animation-duration: 4s;
+}
+
+#bagian2 {
+    animation-name: animasimasukiri;
+    animation-duration: 6s;
+}
+
+/* Animasi */
+@keyframes animasimasuk {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes animasimasukkanan {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        /* Berakhir di posisi asli */
+    }
+}
+
+@keyframes animasimasukkiri {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        -moz-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        /* Berakhir di posisi asli */
+    }
+}
+
+.animate__fadeInUp {
+    animation: animasimasuk 1s ease-out forwards;
+    -webkit-animation: animasimasuk 1s ease-out forwards;
+}
+
+/* Mobile */
+@media screen and (max-width: 1200px) {
+    .zoomable {
+        height: 300px;
+    }
+
+    header {
+        display: none;
+    }
+
+    #navbar {
+        display: none;
+    }
+
+    .navbar {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        border-bottom: 1px solid rgb(151, 151, 151);
+    }
+
+    section>.carousel {
+        height: 45vh;
+        overflow: hidden;
+    }
+
+    #menu-sidebar {
+        width: 100%;
+    }
+
+    .menu-toggle {
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+    }
+
+    #carousel {
+        height: 45vh;
+    }
+
+    /* #bagian2 {
+        margin-top: 50px;
+    } */
+
+    #visimisi {
+        height: 115vh;
+        /* color: #46474d; */
+        color: #ffffff;
+    }
+
+    #bagian2 {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 1020px) {
+    #tm {
+        /* color: red; */
+        display: none;
+    }
+
+    #sosmed {
+        width: 100%;
+        /* background-color: rebeccapurple; */
+        margin-right: 10px;
+    }
+
+    #sosmed>div>ul {
+        display: flex;
+        list-style-type: none;
+        align-items: end;
+
+    }
+
+    /* #visimisi {
+        height: 115vh;
+        color: #ffffff;
+    } */
+    #bagian2 {
+        /* padding-inline: 100px; */
+        margin-top: 10px;
+    }
+}
+
+/* Tabs */
+@media screen and (max-width: 600px) {
+    #visimisi {
+        height: 95vh;
+        color: rgb(253, 253, 253);
+    }
+
+    #bagian2 {
+        /* padding-inline: 100px; */
+        margin-top: 20px;
+    }
+
+    #misi {
+        float: right;
+    }
+}
+
+/* Handphone */
+@media screen and (min-width: 1200px) {
+    #menu-sidebar {
+        display: none;
+    }
+
+    .offcanvas {
+        display: none;
+    }
+}
