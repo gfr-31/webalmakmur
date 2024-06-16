@@ -1,3 +1,9 @@
+@push('styles')
+    @livewireStyles
+@endpush
+@push('scripts')
+    @livewireScripts
+@endpush
 <div>
     Footer
 </div>

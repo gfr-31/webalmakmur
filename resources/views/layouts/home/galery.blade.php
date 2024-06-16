@@ -1,11 +1,11 @@
 @extends('master')
 
-@push('styles')
+{{-- @push('styles')
     @livewireStyles
 @endpush
 @push('scripts')
     @livewireScripts
-@endpush
+@endpush --}}
 
 @section('galery')
     <h1>galery</h1>
