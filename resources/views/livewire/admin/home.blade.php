@@ -1,4 +1,4 @@
-@extends('layouts.admin.master-admin')
+@extends('master-admin')
 
 @section('home')
     <div class="page-header d-print-none">

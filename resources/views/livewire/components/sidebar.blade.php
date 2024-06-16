@@ -1,9 +1,3 @@
-@push('styles')
-    @livewireStyles
-@endpush
-@push('scripts')
-    @livewireScripts
-@endpush
 <div class=" offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header " style="border-bottom:1px solid rgb(221, 221, 221)">
         <a href="#">

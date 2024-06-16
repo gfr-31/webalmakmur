@@ -1,9 +1,3 @@
-@push('styles')
-    @livewireStyles
-@endpush
-@push('scripts')
-    @livewireScripts
-@endpush
 <div>
     <header id="header" class=" header">
         <div class=" container">

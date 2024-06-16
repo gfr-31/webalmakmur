@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\LoginAdmin;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class LoginAdmin extends Component
 {
+    
     public $password;
     public $username;
     public $showPassword = false;
@@ -39,6 +40,6 @@ class LoginAdmin extends Component
     }
     public function render()
     {
-        return view('livewire.components.login-admin');
+        return view('livewire.login-admin.login-admin');
     }
 }

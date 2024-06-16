@@ -1,12 +1,26 @@
 @extends('master')
 
-{{-- @push('styles')
-    @livewireStyles
-@endpush
-@push('scripts')
-    @livewireScripts
-@endpush --}}
+{{-- @section('galery') --}}
+@section('content')
+    <!-- Page header -->
+    <div class="page-header d-print-none ">
+        <div class=" container-xl">
+            <div class="row g-2 align-items-center">
+                <div class="col">
+                    <!-- Page pre-title -->
+                    <div class="page-pretitle">
+                        Page
+                    </div>
+                    <h2 class="page-title">
+                        Gallery
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
 
-@section('galery')
-    <h1>galery</h1>
+    <!-- Page body -->
+    <div class="page-body ">
+        <h1>galery</h1>
+    </div>
 @endsection

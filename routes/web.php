@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LoginAdmin;
+use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\PanelAdminController;
 use Illuminate\Support\Facades\Route;
@@ -25,8 +25,8 @@ Route::prefix('/')->group(function() {
     Route::get('data-guru', [MasterController::class, 'dataguru']);
     Route::get('sarana-prasarana', [MasterController::class, 'sapras']);
     Route::get('contact', [MasterController::class, 'contact']);
-    Route::get('login-admin', [LoginAdmin::class, 'index']);
-    Route::get('logout', [LoginAdmin::class, 'logout']);
+    Route::get('login-admin', [LoginAdminController::class, 'index']);
+    Route::get('logout', [LoginAdminController::class, 'logout']);
 });
 
 // Panel Mayat86

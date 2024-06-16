@@ -63,7 +63,7 @@
                                         role="status" aria-hidden="true"></span>
                                     <span wire:loading.remove>Log In</span>
                                 </button>
-                                <a href="/" wire:navigate style="text-decoration: none;">
+                                <a href="/" style="text-decoration: none;">
                                     <button type="button" class="button btn text-white btn-block"
                                         style="background-color: #b3b3b3;">
                                         <span wire:loading wire:target="navigate"
