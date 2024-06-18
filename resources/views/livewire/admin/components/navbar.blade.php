@@ -55,7 +55,7 @@
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="/panel-admin" wire:navigate>
+                    <a class="nav-link" href="/panel-admin/home" wire:navigate>
                         <span
                             class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -72,74 +72,127 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                <li class="nav-item">
+                    <a class="nav-link" href="/panel-admin/prestasi" wire:navigate>
                         <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-trophy">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                                <path d="M12 12l8 -4.5" />
-                                <path d="M12 12l0 9" />
-                                <path d="M12 12l-8 -4.5" />
-                                <path d="M16 5.25l-8 4.5" />
+                                <path d="M8 21l8 0" />
+                                <path d="M12 17l0 4" />
+                                <path d="M7 4l10 0" />
+                                <path d="M17 4v8a5 5 0 0 1 -10 0v-8" />
+                                <path d="M5 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                <path d="M19 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Interface
+                            Prestasi
                         </span>
                     </a>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-menu-columns">
-                            <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./accordion.html">
-                                    Accordion
-                                </a>
-                                <div class="dropend">
-                                    <a class="dropdown-item dropdown-toggle" href="#sidebar-authentication"
-                                        data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
-                                        aria-expanded="false">
-                                        Authentication
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        <a href="./sign-in.html" class="dropdown-item">
-                                            Sign in
-                                        </a>
-                                        <a href="./sign-in-link.html" class="dropdown-item">
-                                            Sign in link
-                                        </a>
-                                        <a href="./sign-in-illustration.html" class="dropdown-item">
-                                            Sign in with illustration
-                                        </a>
-                                        <a href="./sign-in-cover.html" class="dropdown-item">
-                                            Sign in with cover
-                                        </a>
-                                        <a href="./sign-up.html" class="dropdown-item">
-                                            Sign up
-                                        </a>
-                                        <a href="./forgot-password.html" class="dropdown-item">
-                                            Forgot password
-                                        </a>
-                                        <a href="./terms-of-service.html" class="dropdown-item">
-                                            Terms of service
-                                        </a>
-                                        <a href="./auth-lock.html" class="dropdown-item">
-                                            Lock screen
-                                        </a>
-                                        <a href="./2-step-verification.html" class="dropdown-item">
-                                            2 step verification
-                                        </a>
-                                        <a href="./2-step-verification-code.html" class="dropdown-item">
-                                            2 step verification code
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/panel-admin/ekstrakulikuler" wire:navigate>
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-swords">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M21 3v5l-11 9l-4 4l-3 -3l4 -4l9 -11z" />
+                                <path d="M5 13l6 6" />
+                                <path d="M14.32 17.32l3.68 3.68l3 -3l-3.365 -3.365" />
+                                <path d="M10 5.5l-2 -2.5h-5v5l3 2.5" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Ekstrakulikuler
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/panel-admin/gallery" wire:navigate>
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-camera">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
+                                <path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Gallery
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/panel-admin/data-guru" wire:navigate>
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-users">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Data Guru
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/panel-admin/sarana-prasarana" wire:navigate>
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-building-community">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8" />
+                                <path d="M13 7l0 .01" />
+                                <path d="M17 7l0 .01" />
+                                <path d="M17 11l0 .01" />
+                                <path d="M17 15l0 .01" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Sarana Prasarana
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/panel-admin/user-admin" wire:navigate>
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-device-laptop">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 19l18 0" />
+                                <path
+                                    d="M5 6m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            User Admin
+                        </span>
+                    </a>
                 </li>
             </ul>
         </div>

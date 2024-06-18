@@ -2,12 +2,12 @@
 
 namespace App\Livewire\LoginAdmin;
 
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class LoginAdmin extends Component
 {
-    
+
     public $password;
     public $username;
     public $showPassword = false;
@@ -16,10 +16,6 @@ class LoginAdmin extends Component
         'password' => 'required',
     ];
 
-    public function showPass()
-    {
-        $this->showPassword = !$this->showPassword;
-    }
     public function login()
     {
         $this->validate();
@@ -30,13 +26,13 @@ class LoginAdmin extends Component
         ])) {
             session()->flash('message', 'Log In Successful');
             return redirect()->intended('/panel-admin');
+            // $this->dispatch('loginSuccess');
         } else {
+            $this->username = "";
+            $this->password = "";
             session()->flash('error', 'Your Username or Password is incorrect');
         };
         // dd($this->username);
-    }
-    public function navigateBack(){
-        $this->emit('navigateTo', '/');
     }
     public function render()
     {

@@ -1,80 +1,104 @@
 <div>
-    @if (session()->has('error'))
-        <div class="alert alert-danger text-center">
-            {{ session('error') }}
-        </div>
-    @elseif(session()->has('message'))
-        <div class="alert alert-success text-center">
-            {{ session('message') }}
-        </div>
-    @endif
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 order-md-2 mb-3 "
-                    style=" display: flex; align-items: center; justify-content: center;">
-                    {{-- <img src="{{ asset('login/images/undraw_file_sync_ot38.svg') }}" alt="Image" class="img-fluid"> --}}
-                    <img src="{{ asset('assets/Logo-Header.png') }}" alt="Image" class="img-fluid">
+    <div class="page page-center ">
+        @if (session()->has('error'))
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                            <path d="M12 8v4"></path>
+                            <path d="M12 16h.01"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        {{ session('error') }}
+                    </div>
                 </div>
-                <div class="col-md-6 contents">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="mb-1">
-                                <h3>Log In to <strong>Panel Admin</strong></h3>
-                                <p class="mb-2">This is The corpse Panel Admin login page for Islamic Junior Hight
-                                    School
-                                </p>
+                <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+            </div>
+        @elseif(session()->has('message'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M5 12l5 5l10 -10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        {{ session('message') }}
+                    </div>
+                </div>
+                <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+            </div>
+        @endif
+        <div class="container py-4">
+            <div class="row align-items-center g-4">
+                <div class="col-lg">
+                    <div class="container-tight">
+                        <div class="text-center mb-4">
+                            <a href="/" wire:navigate class="navbar-brand navbar-brand-autodark">
+                                <img src="{{ asset('assets/logo.png') }}" height="90" alt="">
+                            </a>
+                        </div>
+                        <div class="card card-md">
+                            <div class="card-body">
+                                <h2 class="h2 text-center mb-4">Login to Panel Admin</h2>
+                                <form wire:submit.prevent="login">
+                                    <div class="mb-3">
+                                        <label class="form-label">Username</label>
+                                        <input type="text" wire:model="username" name="username" class="form-control"
+                                            placeholder="Username" autocomplete="off">
+                                        @error('username')
+                                            <small>
+                                                <span class="text-danger">{{ $message }}</span>
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">
+                                            Password
+                                        </label>
+                                        <div class="input-group input-group-flat">
+                                            <input type="password" wire:model="password" name="password"
+                                                class="form-control" placeholder="Your password" autocomplete="off">
+                                        </div>
+                                        @error('password')
+                                            <small>
+                                                <span class="text-danger">{{ $message }}</span>
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="form-footer ">
+                                        <button type="submit" class="btn btn-teal w-100">
+                                            <span wire:loading wire:target="login"
+                                                class="spinner-border spinner-border-sm" role="status"
+                                                aria-hidden="true"></span>
+                                            <span wire:loading.remove>Log In</span>
+                                        </button>
+                                    </div>
+                                </form>
+                                <div class=" mt-2">
+                                    <a href="/" wire:navigate style="text-decoration: none;">
+                                        <button type="button" class="btn btn-outline-secondary w-100">
+                                            Back
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
-                            <form wire:submit.prevent="login">
-                                <div class=" first">
-                                    {{-- <label for="username" class=" form-label">Username</label> --}}
-                                    <input type="text" class="form-control  border-bottom text-center "
-                                        id="username" placeholder="Username" wire:model="username">
-                                    @error('username')
-                                        <small>
-                                            <span class="text-danger">{{ $message }}</span>
-                                        </small>
-                                    @enderror
-                                </div>
-                                <div class=" last mb-4">
-                                    {{-- <label for="password">Password</label> --}}
-                                    <input type="{{ $showPassword ? 'text' : 'password' }}"
-                                        class="form-control border-bottom text-center " id="password"
-                                        wire:model="password"
-                                        placeholder="{{ $showPassword ? 'Password' : '********' }}">
-                                    @error('password')
-                                        <small>
-                                            <span class="text-danger">{{ $message }}</span>
-                                        </small>
-                                    @enderror
-                                </div>
-                                <div class="d-flex mb-4 align-items-center">
-                                    <label class="control control--checkbox mb-0">
-                                        <span class="caption">
-                                            {{ $showPassword ? 'Hide' : 'Show' }} Pass
-                                        </span>
-                                        <input type="checkbox" wire:click="showPass" />
-                                        <div class="control__indicator"></div>
-                                    </label>
-                                </div>
-                                <button type="submit" class="button btn text-white btn-block mb-1"
-                                    style="background-color: #3d9970">
-                                    <span wire:loading wire:target="login" class="spinner-border spinner-border-sm"
-                                        role="status" aria-hidden="true"></span>
-                                    <span wire:loading.remove>Log In</span>
-                                </button>
-                                <a href="/" style="text-decoration: none;">
-                                    <button type="button" class="button btn text-white btn-block"
-                                        style="background-color: #b3b3b3;">
-                                        <span wire:loading wire:target="navigate"
-                                            class="spinner-border spinner-border-sm" role="status"
-                                            aria-hidden="true"></span>
-                                        <span wire:loading.remove><i class="fa-solid fa-reply"></i> Back</span>
-                                    </button>
-                                </a>
-                            </form>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg d-none d-lg-block">
+                    <img src="{{ asset('assets/Logo-Header.png') }}" height="190" class="d-block mx-auto"
+                        alt="">
                 </div>
             </div>
         </div>

@@ -29,7 +29,14 @@ Route::prefix('/')->group(function() {
     Route::get('logout', [LoginAdminController::class, 'logout']);
 });
 
-// Panel Mayat86
+// Panel Admin
 Route::prefix('panel-admin')->middleware('isLogin')->group(function () {
-    Route::get('/', [PanelAdminController::class, 'index']);
+    Route::get('', [PanelAdminController::class, 'index']);
+    Route::get('home', [PanelAdminController::class, 'index']);
+    Route::get('prestasi', [PanelAdminController::class, 'prestasi']);
+    Route::get('ekstrakulikuler', [PanelAdminController::class, 'ekstrakulikuler']);
+    Route::get('gallery', [PanelAdminController::class, 'gallery']);
+    Route::get('data-guru', [PanelAdminController::class, 'dataGuru']);
+    Route::get('sarana-prasarana', [PanelAdminController::class, 'saranaPrasarana']);
+    Route::get('user-admin', [PanelAdminController::class, 'userAdmin']);
 });

@@ -35,7 +35,7 @@
         @livewire('admin.components.navbar')
         @livewire('admin.components.header')
         <div class="page-wrapper">
-            @yield('home')
+            @yield('contant-admin')
             {{-- 123 --}}
             @livewire('admin.components.footer')
         </div>
