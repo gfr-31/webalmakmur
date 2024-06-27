@@ -1,7 +1,4 @@
-@extends('master')
-
-{{-- @section('contact') --}}
-@section('content')
+<div>
     <!-- Page header -->
     <div class="page-header d-print-none ">
         <div class=" container-xl">
@@ -12,7 +9,7 @@
                         Page
                     </div>
                     <h2 class="page-title">
-                        Contact
+                        Gallery
                     </h2>
                 </div>
             </div>
@@ -21,6 +18,6 @@
 
     <!-- Page body -->
     <div class="page-body ">
-        <h1>contact</h1>
+        <h1>galery</h1>
     </div>
-@endsection
+</div>

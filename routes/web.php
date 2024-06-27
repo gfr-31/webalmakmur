@@ -1,8 +1,25 @@
 <?php
 
-use App\Http\Controllers\LoginAdminController;
-use App\Http\Controllers\MasterController;
-use App\Http\Controllers\PanelAdminController;
+use App\Livewire\Admin\Home as AdminHome;
+
+// Prestasi
+use App\Livewire\Admin\Prestasi as AdminPrestasi;
+use App\Livewire\Admin\Prestasi\AddPrestasi;
+use App\Livewire\Admin\Prestasi\EditPrestasi;
+
+// Eskul
+use App\Livewire\Admin\Eskul as AdminEskul;
+use App\Livewire\Admin\Eskul\AddEskul;
+
+// App
+use App\Livewire\App\Contact;
+use App\Livewire\App\DataGuru;
+use App\Livewire\App\Eskul;
+use App\Livewire\App\Gallery;
+use App\Livewire\App\Home;
+use App\Livewire\App\Prestasi;
+use App\Livewire\App\Sapras;
+use App\Livewire\LoginAdmin\LoginAdmin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,26 +34,39 @@ use Illuminate\Support\Facades\Route;
 */
 
 // MasterLayout
-Route::prefix('/')->group(function() {
-    Route::get('', [MasterController::class, 'home']);
-    Route::get('prestasi', [MasterController::class, 'prestasi']);
-    Route::get('ekstrakulikuler', [MasterController::class, 'eskul']);
-    Route::get('gallery', [MasterController::class, 'galery']);
-    Route::get('data-guru', [MasterController::class, 'dataguru']);
-    Route::get('sarana-prasarana', [MasterController::class, 'sapras']);
-    Route::get('contact', [MasterController::class, 'contact']);
-    Route::get('login-admin', [LoginAdminController::class, 'index']);
-    Route::get('logout', [LoginAdminController::class, 'logout']);
+Route::prefix('/')->group(function () {
+    Route::get('', Home::class);
+    Route::get('prestasi', Prestasi::class);
+    Route::get('ekstrakulikuler', Eskul::class);
+    Route::get('gallery', Gallery::class);
+    Route::get('data-guru', DataGuru::class);
+    Route::get('sarana-prasarana', Sapras::class);
+    Route::get('contact', Contact::class);
+    Route::get('login-admin', LoginAdmin::class);
 });
 
 // Panel Admin
 Route::prefix('panel-admin')->middleware('isLogin')->group(function () {
-    Route::get('', [PanelAdminController::class, 'index']);
-    Route::get('home', [PanelAdminController::class, 'index']);
-    Route::get('prestasi', [PanelAdminController::class, 'prestasi']);
-    Route::get('ekstrakulikuler', [PanelAdminController::class, 'ekstrakulikuler']);
-    Route::get('gallery', [PanelAdminController::class, 'gallery']);
-    Route::get('data-guru', [PanelAdminController::class, 'dataGuru']);
-    Route::get('sarana-prasarana', [PanelAdminController::class, 'saranaPrasarana']);
-    Route::get('user-admin', [PanelAdminController::class, 'userAdmin']);
+    Route::get('', AdminHome::class);
+    Route::get('home', AdminHome::class);
+
+    Route::prefix('prestasi')->group(
+        function () {
+            Route::get('', AdminPrestasi::class);
+            Route::get('add-prestasi', AddPrestasi::class);
+            Route::get('{id}/edit-prestasi', EditPrestasi::class);
+        }
+    );
+
+    Route::prefix('ekstrakulikuler')->group(
+        function(){
+            Route::get('', AdminEskul::class);
+            Route::get('add-ekstrakulikuler', AddEskul::class);
+        }
+    );
+
+    Route::get('gallery', );
+    Route::get('data-guru', );
+    Route::get('sarana-prasarana', );
+    Route::get('user-admin', );
 });

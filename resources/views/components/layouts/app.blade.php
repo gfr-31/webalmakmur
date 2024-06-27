@@ -1,11 +1,11 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>MTS Al Makmur</title>
+    {{-- <title>MTS Al Makmur</title> --}}
     <link rel="icon" href="{{ asset('assets/logo.png') }}">
     <meta name="msapplication-TileColor" content="#0054a6" />
     <meta name="theme-color" content="#0054a6" />
@@ -34,10 +34,8 @@
     <meta property="og:url" content="https://tabler.io/demo/static/og.png">
     <meta property="og:description"
         content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
-    <!-- CSS files -->
-    @stack('styles')
-    {{-- @livewireStyles --}}
 
+    <title>{{ $title ?? 'MTS Al Makmur' }}</title>
     <link href="{{ asset('tabler/dist/css/tabler.min.css?1695847769') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/dist/css/tabler-flags.min.css?1695847769') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/dist/css/tabler-payments.min.css?1695847769') }}" rel="stylesheet" />
@@ -53,10 +51,12 @@
         body {
             font-feature-settings: "cv03", "cv04", "cv11";
         }
-        section{
+
+        section {
             height: 100vh;
         }
     </style>
+    @livewireStyles
 </head>
 
 <body>
@@ -69,15 +69,13 @@
         
         {{-- Page --}}
         <div class="page-wrapper">
-            @yield('content')
+            {{ $slot }}
 
             @livewire('components.footer')
         </div>
     </div>
 
-    @stack('scripts')
-    {{-- @livewireScripts --}}
-    <!-- Libs JS -->
+    @livewireScripts
     <script src="{{ asset('tabler/dist/libs/apexcharts/dist/apexcharts.min.js?1695847769') }}" defer></script>
     <script src="{{ asset('tabler/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1695847769') }}" defer></script>
     <script src="{{ asset('tabler/dist/libs/jsvectormap/dist/maps/world.js?1695847769') }}" defer></script>
@@ -85,7 +83,6 @@
     <!-- Tabler Core -->
     <script src="{{ asset('tabler/dist/js/tabler.min.js?1695847769') }}" defer></script>
     <script src="{{ asset('tabler/dist/js/demo.min.js?1695847769') }}" defer></script>
-
 </body>
 
 </html>

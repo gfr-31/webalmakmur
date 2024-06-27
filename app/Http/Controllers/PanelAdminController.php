@@ -9,9 +9,13 @@ class PanelAdminController extends Controller
     public function index(){
         return view('livewire.admin.home');
     }
+
+    // Prestasi
     public function prestasi(){
-        
         return view('livewire.admin.prestasi');
+    }
+    public function addPrestasi(){
+        return view('livewire.admin.prestasi.add-prestasi');
     }
     public function ekstrakulikuler(){
         return view('livewire.admin.eskul');

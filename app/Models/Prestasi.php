@@ -9,4 +9,5 @@ class Prestasi extends Model
 {
     use HasFactory;
     protected $table = 'prestasi';
+    protected $guarded = 'id';
 }

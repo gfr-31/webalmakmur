@@ -1,7 +1,4 @@
-@extends('master')
-
-{{-- @section('sapras') --}}
-@section('content')
+<div>
     <!-- Page header -->
     <div class="page-header d-print-none ">
         <div class=" container-xl">
@@ -12,7 +9,7 @@
                         Page
                     </div>
                     <h2 class="page-title">
-                        Sarana Prasarana
+                        Ekstrakulikuler
                     </h2>
                 </div>
             </div>
@@ -21,6 +18,6 @@
 
     <!-- Page body -->
     <div class="page-body ">
-        <h1>sapras</h1>
+        <h1>Eskul</h1>
     </div>
-@endsection
+</div>

@@ -9,6 +9,7 @@ class LoginAdminController extends Controller
 {
     public function index() {
         return view('master-login');
+        // return view('livewire.login-admin.login-admin');
     }
 
     public function logout(){
