@@ -13,6 +13,6 @@ class PrestasiTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Prestasi::factory()->count(20)->create();
+        Prestasi::factory()->count(50)->create();
     }
 }

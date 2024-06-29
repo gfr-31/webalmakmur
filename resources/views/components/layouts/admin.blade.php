@@ -25,7 +25,7 @@
             font-feature-settings: "cv03", "cv04", "cv11";
         }
     </style>
-    {{-- @livewireStyles --}}
+    @livewireStyles
 </head>
 
 <body>
@@ -38,7 +38,8 @@
         </div>
     </div>
 
-    {{-- @livewireScripts --}}
+    @livewireScripts
+    @stack('js')
     <script src="{{ asset('tabler/dist/js/demo-theme.min.js') }}"></script>
     <!-- Libs JS -->
     <script src=" {{ asset('tabler/dist/libs/apexcharts/dist/apexcharts.min.js') }}" defer></script>

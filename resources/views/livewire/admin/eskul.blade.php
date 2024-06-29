@@ -79,14 +79,11 @@
                                             {{ $e->description }}
                                         </td>
                                         <td>
-                                            {{-- <span class="avatar me-2"
-                                                style="background-image: url({{ asset('uploads/prestasi/' . $e->foto) }})">
-                                            </span> --}}
                                             <a data-fslightbox="gallery"
-                                                href="{{ asset('uploads/prestasi/' . $e->foto) }}">
+                                                href="{{ asset('uploads/eskul/' . $e->foto) }}">
                                                 <!-- Photo -->
                                                 <div class="avatar"
-                                                    style="background-image: url({{ asset('uploads/prestasi/' . $e->foto) }}">
+                                                    style="background-image: url({{ asset('uploads/eskul/' . $e->foto) }}">
                                                 </div>
                                             </a>
                                         </td>
