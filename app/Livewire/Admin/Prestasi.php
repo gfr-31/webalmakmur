@@ -27,6 +27,7 @@ class Prestasi extends Component
     public function updatedEntries()
     {
         $this->pagin = $this->entries;
+        $this->gotoPage(1);
         // dd($this->pagin);
     }
     public function updatedSearch()
@@ -36,7 +37,7 @@ class Prestasi extends Component
     public function updatedSelectAll($value)
     {
         if ($value) {
-            $this->select = ModelsPrestasi::where('id', '>=', $this->firstId)->limit($this->pagin)->pluck('id');
+            $this->select = ModelsPrestasi::orderBy('id', 'desc')->where('id', '<=', $this->firstId)->limit($this->pagin)->pluck('id');
         } else {
             $this->select = [];
         }
@@ -71,11 +72,11 @@ class Prestasi extends Component
                 ->orWhere('description', 'like', '%' . $this->search . '%')
                 ->orWhere('created_at', 'like', '%' . $this->search . '%')
                 ->orWhere('updated_at', 'like', '%' . $this->search . '%')
-                ->orderBy('created_at', 'desc')
+                ->orderBy('id', 'desc')
                 ->paginate($this->pagin);
             $this->firstId = $prestasi->isNotEmpty() ? $prestasi->first()->id : null;
         } else {
-            $prestasi = ModelsPrestasi::orderBy('created_at', 'desc')->paginate($this->pagin);
+            $prestasi = ModelsPrestasi::orderBy('id', 'desc')->paginate($this->pagin);
             $this->firstId = $prestasi->isNotEmpty() ? $prestasi->first()->id : null;
         }
         return view('livewire.admin.prestasi', [

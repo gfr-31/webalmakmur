@@ -10,6 +10,11 @@ use App\Livewire\Admin\Prestasi\EditPrestasi;
 // Eskul
 use App\Livewire\Admin\Eskul as AdminEskul;
 use App\Livewire\Admin\Eskul\AddEskul;
+use App\Livewire\Admin\Eskul\EditEskul;
+
+// Gallery
+use App\Livewire\Admin\Gallery as AdminGallery;
+
 
 // App
 use App\Livewire\App\Contact;
@@ -62,10 +67,15 @@ Route::prefix('panel-admin')->middleware('isLogin')->group(function () {
         function(){
             Route::get('', AdminEskul::class);
             Route::get('add-ekstrakulikuler', AddEskul::class);
+            Route::get('{id}/edit-ekstrakulikuler', EditEskul::class);
         }
     );
 
-    Route::get('gallery', );
+    Route::prefix('gallery')->group(
+        function(){
+            Route::get('', AdminGallery::class);
+        }
+    );
     Route::get('data-guru', );
     Route::get('sarana-prasarana', );
     Route::get('user-admin', );

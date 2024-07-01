@@ -24,7 +24,8 @@ class EskulFactory extends Factory
         return [
             'title' => $this->faker->country,
             'description' => $this->faker->paragraph,
-            'foto' => $this->faker->imageUrl(640, 480, 'country', true), // URL gambar acak
+            // 'foto' => $this->faker->imageUrl(640, 480, 'country', true), // URL gambar acak
+            'foto' => '1719583363.png' // URL gambar acak
         ];
     }
 }

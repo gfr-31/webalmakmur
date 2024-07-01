@@ -119,7 +119,7 @@
                                 <th class="w-1">
                                     <input wire:model.live="selectAll" class="form-check-input m-0 align-middle"
                                         type="checkbox" aria-label="Select all invoices">
-                                    <input type="hidden" wire:model.live=""
+                                    <input type="hidden" wire:model.live="firstId"
                                         value="{{ $prestasi && $prestasi->isNotEmpty() ? $prestasi->first()->id : 0 }}">
                                 </th>
                                 <th>No</th>
@@ -143,6 +143,7 @@
                                                 {{ $select ? 'checked' : '' }}>
                                         </td>
                                         <td>{{ $no++ }}</td>
+                                        {{-- <td>{{ $p->id }}</td> --}}
                                         <td>
                                             {{ $p->title }}
                                         </td>
@@ -163,7 +164,7 @@
                                         </td>
                                         <td>{{ $p->created_at }}</td>
                                         <td>{{ $p->updated_at ?? '----------' }}</td>
-                                        <td>
+                                        <td wire:key="prestasi-{{ $p->id }}">
                                             <div class="btn-list flex-nowrap">
                                                 <a wire:navigate
                                                     href="/panel-admin/prestasi/{{ $p->id }}/edit-prestasi"
@@ -183,13 +184,14 @@
                                                     </svg>
                                                 </a>
                                                 <button wire:click="delete({{ $p->id }})"
-                                                    class="btn btn-outline-youtube w-100 btn-icon"
+                                                    class="btn btn-outline-youtube btn-icon"
                                                     aria-label="Youtube">
-                                                    <!-- Download SVG icon from http://tabler-icons.io/i/brand-youtube -->
-                                                    <span wire:loading wire:target="delete"
+                                                    <!-- Spinner saat loading -->
+                                                    <span wire:loading wire:target="delete({{ $p->id }})"
                                                         class="spinner-border spinner-border-sm" role="status"
                                                         aria-hidden="true"></span>
-                                                    <svg wire:loading.remove wire:target="delete"
+                                                    <!-- Ikon saat tidak loading -->
+                                                    <svg wire:loading.remove wire:target="delete({{ $p->id }})"
                                                         xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none"
                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"

@@ -13,6 +13,6 @@ class EskulTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Eskul::factory()->count(20)->create(); 
+        Eskul::factory()->count(50)->create(); 
     }
 }

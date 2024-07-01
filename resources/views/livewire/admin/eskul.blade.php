@@ -1,4 +1,7 @@
 <div>
+    {{-- @dump($select)
+    @dump($firstId)
+    @dump($selectAll) --}}
     <div class="page-header d-print-none">
         <div class="container-xl">
             <div class="row g-2 align-items-center">
@@ -7,9 +10,12 @@
                     <div class="page-pretitle">
                         Page
                     </div>
-                    <h2 class="page-title">
-                        Ekstrakulikuler
-                    </h2>
+                    <div class=" d-flex">
+
+                        <h2 class="page-title" style="margin-right: 10px">
+                            Ekstrakulikuler
+                        </h2>
+                    </div>
                 </div>
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
@@ -27,7 +33,7 @@
                             </svg>
                             Create New Data
                         </a>
-                        <a href="/panel-admin/prestasi/add-prestasi" wire:navigate
+                        <a href="/panel-admin/ekstrakulikuler/add-ekstrakulikuler" wire:navigate
                             class="btn btn-dark d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#modal-report" aria-label="Create new report">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -49,12 +55,73 @@
     <div class=" page-body">
         <div class="container-xl">
             <div class="card">
+                <div class="card-body border-bottom py-3">
+                    <div class="d-flex ">
+                        @if ($select)
+                            <div class=" text-secondary">
+                                Delete All Data:
+                                <div class=" ms-2 d-inline-block">
+                                    <button wire:click="deleteAll('')" class="btn btn-outline-youtube btn-icon"
+                                        aria-label="Youtube">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/brand-youtube -->
+                                        <span wire:loading wire:target="deleteAll"
+                                            class="spinner-border spinner-border-sm" role="status"
+                                            aria-hidden="true"></span>
+                                        <svg wire:loading.remove wire:target="deleteAll"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M4 7l16 0" />
+                                            <path d="M10 11l0 6" />
+                                            <path d="M14 11l0 6" />
+                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        @else
+                            <div class="text-secondary ">
+                                Show
+                                <div class="ms-2 d-inline-block">
+                                    {{-- <input wire:model.live.debounce.400ms="entries" type="number"
+                                            class="form-control" min="1" placeholder="10" > --}}
+                                    <select wire:model.live.debounce.400ms="entries" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="75">75</option>
+                                        <option value="100">100</option>
+                                        {{-- <option value="all">All</option> --}}
+                                    </select>
+                                </div>
+                                entries
+                            </div>
+                        @endif
+                        <div class="text-secondary ms-auto">
+                            Search:
+                            <div class="ms-2 d-inline-block">
+                                <input wire:model.live.debounce.300ms="search" type="text" class="form-control"
+                                    placeholder=" Search....">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-vcenter card-table">
                         <thead>
                             <tr>
-                                <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
-                                        aria-label="Select all invoices"></th>
+                                <th class="w-1">
+                                    <input wire:model.live="selectAll" class="form-check-input m-0 align-middle"
+                                        type="checkbox" aria-label="Select all invoices">
+                                    <input type="hidden" wire:model.live="firstId"
+                                        value="{{ $eskul && $eskul->isNotEmpty() ? $eskul->first()->id : 0 }}">
+                                </th>
                                 <th>No</th>
                                 <th>Title</th>
                                 <th>Description</th>
@@ -69,8 +136,12 @@
                                 <?php $no = 1; ?>
                                 @foreach ($eskul as $e)
                                     <tr>
-                                        <td><input class="form-check-input m-0 align-middle" type="checkbox"
-                                                aria-label="Select invoice" value="{{ $e->id }}"></td>
+                                        <td>
+                                            <input wire:key="{{ $e->id }}" value="{{ $e->id }}"
+                                                wire:model.live="select" class="form-check-input m-0 align-middle"
+                                                type="checkbox" aria-label="Select invoice"
+                                                {{ $select ? 'checked' : '' }}>
+                                        </td>
                                         <td>{{ $no++ }}</td>
                                         <td>
                                             {{ $e->title }}
@@ -89,10 +160,10 @@
                                         </td>
                                         <td>{{ $e->created_at }}</td>
                                         <td>{{ $e->updated_at ?? '----------' }}</td>
-                                        <td>
+                                        <td wire:key="eskul-{{ $e->id }}">
                                             <div class="btn-list flex-nowrap">
                                                 <a wire:navigate
-                                                    href="/panel-admin/prestasi/{{ $e->id }}/edit-prestasi"
+                                                    href="/panel-admin/ekstrakulikuler/{{ $e->id }}/edit-ekstrakulikuler"
                                                     class="btn btn-outline-facebook btn-icon" aria-label="Facebook">
                                                     <!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -109,13 +180,15 @@
                                                     </svg>
                                                 </a>
                                                 <button wire:click="delete({{ $e->id }})"
-                                                    class="btn btn-outline-youtube w-100 btn-icon" aria-label="Youtube">
+                                                    class="btn btn-outline-youtube w-100 btn-icon"
+                                                    aria-label="Youtube">
                                                     <!-- Download SVG icon from http://tabler-icons.io/i/brand-youtube -->
-                                                    <span wire:loading wire:target="delete"
+                                                    <span wire:loading wire:target="delete({{ $e->id }})"
                                                         class="spinner-border spinner-border-sm" role="status"
                                                         aria-hidden="true"></span>
-                                                    <svg wire:loading.remove xmlns="http://www.w3.org/2000/svg"
-                                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    <svg wire:loading.remove wire:target="delete({{ $e->id }})"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                         stroke-linejoin="round"
                                                         class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
@@ -160,8 +233,20 @@
                         </tbody>
                     </table>
                 </div>
+                <div class=" m-2">
+                    {{ $eskul->links() }}
+                    @push('js')
+                        <script src="{{ asset('tabler/dist/libs/fslightbox/index.js') }}" defer></script>
+                        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+                            crossorigin="anonymous"></script>
+                        <script>
+                            $(".page-item").on('click', function(event) {
+                                Livewire.dispatch('resetMySelected')
+                            })
+                        </script>
+                    @endpush
+                </div>
             </div>
         </div>
     </div>
 </div>
-<script src="{{ asset('tabler/dist/libs/fslightbox/index.js') }}" defer></script>
