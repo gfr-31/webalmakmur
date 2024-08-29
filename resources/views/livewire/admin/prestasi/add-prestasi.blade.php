@@ -85,7 +85,7 @@
                                 <!-- Foto -->
                                 <div class="mb-3">
                                     <label class="form-label">Foto</label>
-                                    <input wire:model="foto" type="file" class="form-control"
+                                    <input wire:model="foto" type="file" id="fileInput"class="form-control"
                                         placeholder="Input Foto">
                                     @error('foto')
                                         <span class="text-danger">{{ $message }}</span>
@@ -94,7 +94,14 @@
                             </div>
                             <div class="card-footer text-end">
                                 <div class="d-flex">
-                                    <button type="submit" class="btn btn-primary ms-auto">Send data</button>
+                                    <button type="submit" class="btn btn-primary ms-auto" style="min-width: 100px;"
+                                        id="submitButton">
+                                        <span wire:loading wire:target="add" class="spinner-border spinner-border-sm"
+                                            role="status" aria-hidden="true"> </span>
+                                        <span wire:loading.remove wire:target="add">
+                                            Send data
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -103,4 +110,12 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function() {
+            var fileName = this.files[0].name;
+            var nextSibling = this.nextElementSibling;
+            nextSibling.innerText = fileName;
+            document.getElementById('submitButton').disabled = true;
+        });
+    </script>
 </div>

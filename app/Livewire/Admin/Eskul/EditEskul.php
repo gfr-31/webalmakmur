@@ -25,6 +25,7 @@ class EditEskul extends Component
     public $foto;
     public $currentFoto;
     public $eskulId;
+    public $oldData;
 
     public function mount($id)
     {
@@ -33,34 +34,52 @@ class EditEskul extends Component
         $this->description = $eskul->description;
         $this->currentFoto = $eskul->foto;
         $this->eskulId = $eskul->id;
+        $this->oldData = [
+            'title' => $eskul->title,
+            'description' => $eskul->description,
+            'currentFoto' => $eskul->currentFoto,
+        ];
+        // dd($this->oldData);
     }
 
     public function update()
     {
-        $validate = $this->validate();
-        // dd($this->all());
-        $eskul = Eskul::find($this->eskulId);
+        $this->validate();
+        $newData = [
+            'title' => $this->title,
+            'description' => $this->description,
+            'currentFoto' => $this->foto,
+        ];
 
-        if ($this->foto) {
-            // Hapus foto lama jika ada
-            if ($this->currentFoto && File::exists(public_path('uploads/eskul/' . $this->currentFoto))) {
-                File::delete(public_path('uploads/eskul/' . $this->currentFoto));
+        if ($newData !== $this->oldData) {
+            // dd($newData);
+            $eskul = Eskul::find($this->eskulId);
+            if ($this->foto) {
+                // Hapus foto lama jika ada
+                if ($this->currentFoto && File::exists(public_path('uploads/eskul/' . $this->currentFoto))) {
+                    File::delete(public_path('uploads/eskul/' . $this->currentFoto));
+                }
+
+                $filename = time() . '.' . $this->foto->getClientOriginalExtension();
+                $this->foto->storeAs('/eskul', $filename, 'public_uploads');
+                $eskul->foto = $filename;
+                $this->currentFoto = $filename;
             }
 
-            $filename = time() . '.' . $this->foto->getClientOriginalExtension();
-            $this->foto->storeAs('/eskul', $filename, 'public_uploads');
-            $eskul->foto = $filename;
-            $this->currentFoto = $filename;
+            $eskul->title = $this->title;
+            $eskul->description = $this->description;
+            $eskul->save();
+            notyf()->position('y', 'top')->duration(3000)->ripple(true)->dismissible(true)->addSuccess('Data successfully updated');
+            return $this->redirect('/panel-admin/ekstrakulikuler', navigate: true);
+        } else {
+            // dd(123);
+            notyf()->position('y', 'top')->duration(3000)->ripple(true)->dismissible(true)->addInfo('No data updates');
+            return $this->redirect('/panel-admin/ekstrakulikuler', navigate: true);
         }
-
-        $eskul->title = $this->title;
-        $eskul->description = $this->description;
-        $eskul->save();
-        return $this->redirect('/panel-admin/ekstrakulikuler', navigate: true);
     }
 
     public function render()
     {
-        return view('livewire.admin.eskul.edit-eskul',);
+        return view('livewire.admin.eskul.edit-eskul', );
     }
 }

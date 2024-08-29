@@ -25,14 +25,16 @@ class GalleryFactory extends Factory
 
         // Generate array of random image URLs
         $photos = [];
-        for ($i = 0; $i < 3; $i++) { // Ganti 3 dengan jumlah foto yang diinginkan
-            $photos[] = $this->faker->imageUrl(640, 480, 'people', true, 'Faker');
+        for ($i = 0; $i < 10; $i++) { // Ganti 3 dengan jumlah foto yang diinginkan
+            $photos[] = [
+                'filename' => "1719676998.png"
+            ];
         }
 
         return [
-            'judul' => $this->faker->title,
+            'judul' => $this->faker->sentence, // Menggunakan sentence untuk judul
             'description' => $this->faker->paragraph,
-            'foto' => json_encode($photos),
+            'foto' => json_encode($photos), // Konversi array ke format JSON
         ];
     }
 }

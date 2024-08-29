@@ -150,7 +150,7 @@
                                             {{ $e->description }}
                                         </td>
                                         <td>
-                                            <a data-fslightbox="gallery"
+                                            <a data-fslightbox="gallery-{{ $e->id }}"
                                                 href="{{ asset('uploads/eskul/' . $e->foto) }}">
                                                 <!-- Photo -->
                                                 <div class="avatar"

@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Gallery\EditGallery;
 use App\Livewire\Admin\Home as AdminHome;
 
 // Prestasi
@@ -14,6 +15,7 @@ use App\Livewire\Admin\Eskul\EditEskul;
 
 // Gallery
 use App\Livewire\Admin\Gallery as AdminGallery;
+use App\Livewire\Admin\Gallery\AddGallery;
 
 
 // App
@@ -64,7 +66,7 @@ Route::prefix('panel-admin')->middleware('isLogin')->group(function () {
     );
 
     Route::prefix('ekstrakulikuler')->group(
-        function(){
+        function () {
             Route::get('', AdminEskul::class);
             Route::get('add-ekstrakulikuler', AddEskul::class);
             Route::get('{id}/edit-ekstrakulikuler', EditEskul::class);
@@ -72,8 +74,10 @@ Route::prefix('panel-admin')->middleware('isLogin')->group(function () {
     );
 
     Route::prefix('gallery')->group(
-        function(){
+        function () {
             Route::get('', AdminGallery::class);
+            Route::get('add-gallery', AddGallery::class);
+            Route::get('{id}/edit-gallery', EditGallery::class);
         }
     );
     Route::get('data-guru', );

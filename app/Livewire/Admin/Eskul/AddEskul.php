@@ -23,7 +23,8 @@ class AddEskul extends Component
     #[Rule('required|sometimes|image|max:1024')]
     public $foto;
 
-    public function add(){
+    public function add()
+    {
         $validate = $this->validate();
         if ($this->foto) {
             $filename = time() . '.' . $this->foto->getClientOriginalExtension();
@@ -37,7 +38,8 @@ class AddEskul extends Component
         ];
         // dd($data);
         Eskul::insert($data);
-        return $this->redirect('/panel-admin/ekstrakulikuler', navigate:true);
+        notyf()->position('y', 'top')->dismissible(true)->ripple(true)->duration(3000)->addSuccess('Data saved successfully');
+        return $this->redirect('/panel-admin/ekstrakulikuler', navigate: true);
     }
     public function render()
     {

@@ -26,7 +26,7 @@ class AddPrestasi extends Component
 
     public function add()
     {
-        $validate = $this->validate();
+        $this->validate();
         if ($this->foto) {
             $filename = time() . '.' . $this->foto->getClientOriginalExtension();
             $validate['foto'] = $this->foto->storeAs('/prestasi', $filename, 'public_uploads');
@@ -39,7 +39,8 @@ class AddPrestasi extends Component
         ];
         // dd($data);
         Prestasi::insert($data);
-        return $this->redirect('/panel-admin/prestasi', navigate:true);
+        notyf()->position('y', 'top')->dismissible(true)->ripple(true)->duration(3000)->addSuccess('Data saved successfully');
+        return $this->redirect('/panel-admin/prestasi', navigate: true);
     }
     public function render()
     {

@@ -14,6 +14,7 @@
     <link href="{{ asset('tabler/dist/css/tabler-payments.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/dist/css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/dist/css/demo.min.css') }}" rel="stylesheet" />
+    @stack('css')
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -23,6 +24,7 @@
 
         body {
             font-feature-settings: "cv03", "cv04", "cv11";
+            /* overflow: hidden; */
         }
     </style>
     @livewireStyles

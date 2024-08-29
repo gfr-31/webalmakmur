@@ -16,10 +16,11 @@ class isLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             return $next($request);
         }
-        session()->flash('error', 'You must Log In first to enter the admin panel page');
+        // session()->flash('error', 'You must Log In first to enter the admin panel page');
+        notyf()->position('y', 'top')->duration(5000)->ripple(true)->dismissible(true)->addError('You must first log in');
         return redirect('/login-admin');
     }
 }

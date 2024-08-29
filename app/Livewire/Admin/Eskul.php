@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Eskul as ModelsEskul;
+use File;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -51,20 +52,25 @@ class Eskul extends Component
     public function deleteAll()
     {
         if (count($this->select)) {
-            for ($i = 0; $i < count($this->select); $i++) {
-                $eskul = ModelsEskul::find($this->select[$i]);
+            foreach ($this->select as $id) {
+                $eskul = ModelsEskul::find($id);
+                $nameFoto = ModelsEskul::where('id', $id)->pluck('foto')->first();
                 $eskul->delete();
+                File::delete(public_path('uploads/eskul/' . $nameFoto));
             }
         }
-        $this->select = [];
-        $this->selectAll = false;
+        $this->resetSelected();
         $this->gotoPage(1);
+        notyf()->position('y', 'top')->duration(3000)->ripple(true)->dismissible(true)->addSuccess('The selected data was deleted successfully');
     }
     public function delete($id)
     {
         $this->selectAll = false;
         $eskul = ModelsEskul::find($id);
+        $nameFoto = ModelsEskul::where('id', $id)->pluck('foto')->first();
         $eskul->delete();
+        File::delete(public_path('uploads/eskul/' . $nameFoto));
+        notyf()->position('y', 'top')->duration(3000)->ripple(true)->dismissible(true)->addSuccess('Data deleted successfully');
     }
     public function render()
     {

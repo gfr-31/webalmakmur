@@ -95,7 +95,14 @@
                             </div>
                             <div class="card-footer text-end">
                                 <div class="d-flex">
-                                    <button type="submit" class="btn btn-primary ms-auto" id="submitButton">Send data
+                                    <button type="submit" class="btn btn-primary ms-auto" style="min-width: 100px"
+                                        id="submitButton">
+                                        <span wire:loading wire:target="update" class="spinner-border spinner-border-sm"
+                                            role="status" aria-hidden="true">
+                                        </span>
+                                        <span wire:loading.remove wire:target="update">
+                                            Update data
+                                        </span>
                                     </button>
                                 </div>
                             </div>
@@ -105,12 +112,12 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('fotoInput').addEventListener('change', function() {
+            var fileName = this.files[0].name;
+            var nextSibling = this.nextElementSibling;
+            nextSibling.innerText = fileName;
+            document.getElementById('submitButton').disabled = true;
+        });
+    </script>
 </div>
-<script>
-    document.getElementById('fotoInput').addEventListener('change', function() {
-        var fileName = this.files[0].name;
-        var nextSibling = this.nextElementSibling;
-        nextSibling.innerText = fileName;
-        document.getElementById('submitButton').disabled = true;
-    });
-</script>

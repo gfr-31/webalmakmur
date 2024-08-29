@@ -8,13 +8,13 @@
                         Page
                     </div>
                     <h2 class="page-title">
-                        Edit Ekstrakulikuler
+                        Add Gallery
                     </h2>
                 </div>
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="/panel-admin/ekstrakulikuler" wire:navigate class="btn btn-dark d-none d-sm-inline-block"
+                        <a href="/panel-admin/gallery" wire:navigate class="btn btn-dark d-none d-sm-inline-block"
                             data-bs-toggle="modal" data-bs-target="#modal-report">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -25,9 +25,9 @@
                                 <path d="M9 14l-4 -4l4 -4" />
                                 <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
                             </svg>
-                            Back To Ekstrakulikuler
+                            Back To Gallery
                         </a>
-                        <a href="/panel-admin/ekstrakulikuler" wire:navigate class="btn btn-dark d-sm-none btn-icon"
+                        <a href="/panel-admin/gallery" wire:navigate class="btn btn-dark d-sm-none btn-icon"
                             data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -51,10 +51,10 @@
             <div class="row row-cards">
                 <div class="col-12">
                     <div class=" card">
-                        <form wire:submit.prevent="update" class="card" enctype="multipart/form-data">
+                        <form wire:submit.prevent="add" class="card" enctype="multipart/form-data" id="uploadForm">
                             @csrf
                             <div class="card-header">
-                                <h4 class="card-title">Form Edit Ekstrakulikuler</h4>
+                                <h4 class="card-title">Form Prestasi</h4>
                             </div>
                             <div class="card-body">
                                 @if (session()->has('message'))
@@ -83,26 +83,19 @@
                                 </div>
 
                                 <!-- Foto -->
-                                <label class="form-label">Foto</label>
-                                <div class=" input-group">
-                                    <input wire:model="foto" type="file" class=" form-control" id="fotoInput">
-                                    <label class="input-group-text"
-                                        for="fotoInput">{{ $currentFoto ? $currentFoto : 'Choose file' }}</label>
+                                <div class="mb-3">
+                                    <label class="form-label">Foto</label>
+                                    <input wire:model="foto" type="file" class="form-control"
+                                        placeholder="Input Foto" multiple id="fileInput">
+                                    @error('foto')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('foto')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </div>
                             <div class="card-footer text-end">
                                 <div class="d-flex">
-                                    <button type="submit" class="btn btn-primary ms-auto" style="min-width: 100px"
-                                        id="submitButton">
-                                        <span wire:loading wire:target="update" class="spinner-border spinner-border-sm"
-                                            role="status" aria-hidden="true"> </span>
-                                        <span wire:loading.remove wire:target="update">
-                                            Update data
-                                        </span>
-                                    </button>
+                                    <button type="submit" class="btn btn-primary ms-auto" id="submitButton">Send
+                                        data</button>
                                 </div>
                             </div>
                         </form>
@@ -112,7 +105,21 @@
         </div>
     </div>
     <script>
-        document.getElementById('fotoInput').addEventListener('change', function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('fileInput');
+            const submitButton = document.getElementById('submitButton');
+
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function() {
             var fileName = this.files[0].name;
             var nextSibling = this.nextElementSibling;
             nextSibling.innerText = fileName;
