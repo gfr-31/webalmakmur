@@ -86,7 +86,6 @@ class Gallery extends Component
         foreach ($fileNames as $names) {
             File::delete(public_path('uploads/gallery/' . $names));
         }
-
         notyf()->position('y', 'top')->duration(3000)->ripple(true)->dismissible(true)->addSuccess('Data deleted successfully');
     }
     public function render()

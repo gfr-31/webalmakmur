@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Gallery;
 
+use File;
 use App\Models\Gallery;
 use Carbon\Carbon;
 use Livewire\Attributes\Layout;
@@ -9,7 +10,7 @@ use Livewire\Attributes\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\File;
+// use Illuminate\Support\Facades\File;
 
 class EditGallery extends Component
 {
@@ -26,6 +27,8 @@ class EditGallery extends Component
     public $foto = [];
     public $currentFoto;
     public $galleryId;
+    public $oldData;
+
     public function mount($id)
     {
         $gallery = Gallery::find($id);
@@ -34,6 +37,10 @@ class EditGallery extends Component
         $this->galleryId = $gallery->id;
         $this->currentFoto = $gallery->foto;
         $this->id = $id;
+        $this->oldData = [
+            'judul' => $this->title,
+            'description' => $this->description,
+        ];
         // dd($this->all());
     }
 
@@ -44,12 +51,20 @@ class EditGallery extends Component
 
     public function deleteFoto($key)
     {
+        $fileName = array_filter($this->currentFoto, function ($photo) use ($key) {
+            return $photo['key'] === $key;
+        });
+
         $this->currentFoto = array_filter($this->currentFoto, function ($photo) use ($key) {
             return $photo['key'] !== $key;
         });
         $this->currentFoto = array_values($this->currentFoto);
         Gallery::where('id', $this->galleryId)->update(['foto' => json_encode($this->currentFoto)]);
-        // dd($this->currentFoto);
+
+        $fileName = reset($fileName);
+        File::delete(public_path('uploads/gallery/' . $fileName['filename']));
+
+        notyf()->position('y', 'top')->duration(3000)->ripple(true)->dismissible(true)->addSuccess('Photo successfully deleted');
     }
 
     public function addFoto()
@@ -83,17 +98,33 @@ class EditGallery extends Component
         // dd($updatedFoto);
         Gallery::where('id', $this->galleryId)->update(['foto' => json_encode($updatedFoto)]);
         $this->currentFoto = $updatedFoto;
+        notyf()->position('y', 'top')->dismissible(true)->ripple(true)->duration(3000)->addSuccess('Photo added successfully');
         $this->dispatch('close-modal');
         $this->reset('foto');
+        // return $this->redirect('/panel-admin/gallery/' . $this->galleryId . '/edit-gallery', navigate: true);
     }
 
     public function update()
     {
-        $gallery = Gallery::find($this->galleryId);
-        $gallery->judul = $this->title;
-        $gallery->description = $this->description;
-        $gallery->save();
-        return $this->redirect('/panel-admin/gallery', navigate: true);
+        $this->validate();
+        $newData = [
+            'judul' => $this->title,
+            'description' => $this->description,
+            // 'currentFoto' => $this->,
+        ];
+
+        if ($newData !== $this->oldData) {
+            $gallery = Gallery::find($this->galleryId);
+            $gallery->judul = $this->title;
+            $gallery->description = $this->description;
+            $gallery->save();
+            notyf()->position('y', 'top')->duration(3000)->ripple(true)->dismissible(true)->addSuccess('Data successfully updated');
+            return $this->redirect('/panel-admin/gallery', navigate: true);
+        } else {
+            notyf()->position('y', 'top')->duration(3000)->ripple(true)->dismissible(true)->addInfo('No data updates');
+            return $this->redirect('/panel-admin/gallery', navigate: true);
+        }
+
     }
     public function render()
     {

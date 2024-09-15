@@ -36,6 +36,7 @@
         content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
 
     <title>{{ $title ?? 'MTS Al Makmur' }}</title>
+    @livewireStyles
     <link href="{{ asset('tabler/dist/css/tabler.min.css?1695847769') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/dist/css/tabler-flags.min.css?1695847769') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/dist/css/tabler-payments.min.css?1695847769') }}" rel="stylesheet" />
@@ -56,17 +57,16 @@
             height: 100vh;
         }
     </style>
-    @livewireStyles
 </head>
 
 <body>
     <script src="{{ asset('tabler/dist/js/demo-theme.min.js?1695847769') }}"></script>
-    <div class="page">
+    <div class="page ">
         <!-- Navbar -->
-        <div class="sticky-top">
-            @livewire('components.navbar')
+        @livewire('components.navbar')
+        <div class="sticky-top ">
         </div>
-        
+
         {{-- Page --}}
         <div class="page-wrapper">
             {{ $slot }}
@@ -74,15 +74,14 @@
             @livewire('components.footer')
         </div>
     </div>
-
     @livewireScripts
-    <script src="{{ asset('tabler/dist/libs/apexcharts/dist/apexcharts.min.js?1695847769') }}" defer></script>
-    <script src="{{ asset('tabler/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1695847769') }}" defer></script>
-    <script src="{{ asset('tabler/dist/libs/jsvectormap/dist/maps/world.js?1695847769') }}" defer></script>
-    <script src="{{ asset('tabler/dist/libs/jsvectormap/dist/maps/world-merc.js?1695847769') }}" defer></script>
+    <script src="{{ asset('tabler/dist/libs/apexcharts/dist/apexcharts.min.js') }}" defer></script>
+    <script src="{{ asset('tabler/dist/libs/jsvectormap/dist/js/jsvectormap.min.js') }}" defer></script>
+    <script src="{{ asset('tabler/dist/libs/jsvectormap/dist/maps/world.js') }}" defer></script>
+    <script src="{{ asset('tabler/dist/libs/jsvectormap/dist/maps/world-merc.js') }}" defer></script>
     <!-- Tabler Core -->
-    <script src="{{ asset('tabler/dist/js/tabler.min.js?1695847769') }}" defer></script>
-    <script src="{{ asset('tabler/dist/js/demo.min.js?1695847769') }}" defer></script>
+    <script src="{{ asset('tabler/dist/js/tabler.min.js') }}"></script>
+    <script src="{{ asset('tabler/dist/js/demo.min.js') }}" defer></script>
 </body>
 
 </html>

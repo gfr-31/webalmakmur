@@ -1,9 +1,20 @@
 <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu"
-            aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+
+        <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse"
+            aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-x d-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M18 6l-12 12" />
+                    <path d="M6 6l12 12" />
+                </svg>
+            </span>
         </button>
+
         <h1 class="navbar-brand ">
             <a href="/panel-admin" wire:navigate style="text-decoration: none">
                 {{-- <img src="./static/logo.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image"> --}}
@@ -16,7 +27,7 @@
         </h1>
 
         <div class="navbar-nav flex-row d-lg-none">
-            <div class=" d-flex d-md-flex " style="margin-right: 10px">
+            <div class=" d-flex d-md-flex ">
                 <a href="?theme=dark" wire:navigate class="nav-link px-0 hide-theme-dark" title="Enable dark mode"
                     data-bs-toggle="tooltip" data-bs-placement="bottom">
                     <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
@@ -40,10 +51,22 @@
                     </svg>
                 </a>
             </div>
+            <div class=" d-flex d-md-flex " style="margin-right: 10px">
+                <a href="/" wire:navigate class="nav-link px-0 " title="Website" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-laptop">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M3 19l18 0" />
+                        <path d="M5 6m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z" />
+                    </svg>
+                </a>
+            </div>
             <div class="col-auto ms-auto d-print-none ">
                 <div class="btn-list">
-                    <a href="#" wire:click="logout" class="btn btn-outline-danger btn-icon"
-                        data-bs-toggle="modal" data-bs-target="#modal-report">
+                    <a href="#" wire:click="logout" class="btn btn-outline-danger btn-icon" data-bs-toggle="modal"
+                        data-bs-target="#modal-report">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -57,7 +80,8 @@
                 </div>
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="sidebar-menu">
+
+        <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="navbar-nav pt-lg-3">
                 <li class="nav-item">
                     <a class="nav-link" href="/panel-admin/home" wire:navigate>
@@ -202,4 +226,13 @@
             </ul>
         </div>
     </div>
+    <script>
+        document.querySelector('#navbar-toggler').addEventListener('click', function() {
+            const navbarMenu = document.querySelector('#navbar-menu');
+            navbarMenu.classList.toggle('show');
+
+            document.querySelector('.navbar-toggler-icon').classList.toggle('d-none');
+            document.querySelector('.navbar-toggler-x').classList.toggle('d-none');
+        });
+    </script>
 </aside>

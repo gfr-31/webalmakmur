@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-nav flex-row order-md-last">
-            <div class="d-none d-md-flex " style="margin-right: 10px">
+            <div class="d-none d-md-flex">
                 <a href="?theme=dark" wire:navigate class="nav-link px-0 hide-theme-dark" title="Enable dark mode"
                     data-bs-toggle="tooltip" data-bs-placement="bottom">
                     <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
@@ -26,6 +26,18 @@
                         <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
                         <path
                             d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+                    </svg>
+                </a>
+            </div>
+            <div class=" d-flex d-md-flex " style="margin-right: 10px">
+                <a href="/" wire:navigate class="nav-link px-0 " title="Website" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-device-laptop">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M3 19l18 0" />
+                        <path d="M5 6m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z" />
                     </svg>
                 </a>
             </div>

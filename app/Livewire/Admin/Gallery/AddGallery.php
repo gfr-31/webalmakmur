@@ -55,6 +55,7 @@ class AddGallery extends Component
         ];
         // dd($data);
         Gallery::insert($data);
+        notyf()->position('y', 'top')->dismissible(true)->ripple(true)->duration(3000)->addSuccess('Data saved successfully');
         return $this->redirect('/panel-admin/gallery', navigate: true);
     }
 

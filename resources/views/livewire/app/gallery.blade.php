@@ -18,6 +18,8 @@
 
     <!-- Page body -->
     <div class="page-body ">
-        <h1>galery</h1>
+        <section>
+            <h1>galery</h1>
+        </section>
     </div>
 </div>

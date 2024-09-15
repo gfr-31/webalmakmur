@@ -241,9 +241,22 @@
                                 Livewire.dispatch('resetMySelected')
                             })
                         </script>
+                        <script>
+                            window.addEventListener('load', function() {
+                                const url = new URL(window.location.href);
+                                if (url.searchParams.has('page') && url.searchParams.get('page') !== '1') {
+                                    url.searchParams.set('page', '1');
+                                    window.location.href = url.href;
+                                } else if (url.searchParams.has('page')) {
+                                    url.searchParams.delete('page');
+                                    window.history.replaceState({}, document.title, url.pathname);
+                                }
+                            });
+                        </script>
                     @endpush
                 </div>
             </div>
         </div>
     </div>
+    {{-- <script src=" {{ asset('tabler/dist/js/tabler.min.js') }}"></script> --}}
 </div>

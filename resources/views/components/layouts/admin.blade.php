@@ -7,13 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title ?? 'Panel Admin Al Makmur' }}</title>
     <link rel="icon" href="{{ asset('assets/logo.png') }}">
-    <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('tabler/dist/css/tabler.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('tabler/dist/css/tabler-flags.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('tabler/dist/css/tabler-payments.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('tabler/dist/css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/dist/css/demo.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('tom-select/style.css') }}" rel="stylesheet">
     @stack('css')
     <style>
         @import url('https://rsms.me/inter/inter.css');
@@ -31,6 +28,7 @@
 </head>
 
 <body>
+    <script src=" {{ asset('tabler/dist/js/demo-theme.min.js') }}"></script>
     <div class="page">
         @livewire('admin.components.navbar')
         @livewire('admin.components.header')
@@ -41,15 +39,18 @@
     </div>
 
     @livewireScripts
-    @stack('js')
-    <script src="{{ asset('tabler/dist/js/demo-theme.min.js') }}"></script>
+
     <!-- Libs JS -->
+    <script src=" {{ asset('tabler/dist/libs/nouislider/dist/nouislider.min.js') }}" defer></script>
+    <script src=" {{ asset('tabler/dist/libs/litepicker/dist/litepicker.js') }}" defer></script>
+    <script src=" {{ asset('tabler/dist/libs/tom-select/dist/js/tom-select.base.min.js') }}" defer></script>
     <script src=" {{ asset('tabler/dist/libs/apexcharts/dist/apexcharts.min.js') }}" defer></script>
     <script src=" {{ asset('tabler/dist/libs/jsvectormap/dist/js/jsvectormap.min.js') }}" defer></script>
     <!-- Tabler Core -->
-    <script src=" {{ asset('tabler/dist/js/tabler.min.js') }}" defer></script>
+    <script src=" {{ asset('tabler/dist/js/tabler.min.js') }}"></script>
     <script src=" {{ asset('tabler/dist/js/demo.min.js') }}" defer></script>
-
+    <script src=" {{ asset('tom-select/index.js') }}"></script>
+    @stack('js')
 </body>
 
 </html>

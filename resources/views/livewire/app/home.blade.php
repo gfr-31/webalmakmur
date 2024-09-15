@@ -20,12 +20,12 @@
                                 New view
                             </a>
                         </span>
-                        <a href="#" class="btn btn-primary d-none d-sm-inline-block"
-                            data-bs-toggle="modal" data-bs-target="#modal-report">
+                        <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
+                            data-bs-target="#modal-report">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M12 5l0 14" />
                                 <path d="M5 12l14 0" />
@@ -35,9 +35,9 @@
                         <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#modal-report" aria-label="Create new report">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M12 5l0 14" />
                                 <path d="M5 12l14 0" />
@@ -52,37 +52,7 @@
     <!-- Page body -->
     <div class="page-body ">
         <section>
-            <div id="carousel-indicators-dot-vertical" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-indicators carousel-indicators-vertical carousel-indicators-dot">
-                    <button type="button" data-bs-target="#carousel-indicators-dot-vertical" data-bs-slide-to="0"
-                        class=""></button>
-                    <button type="button" data-bs-target="#carousel-indicators-dot-vertical" data-bs-slide-to="1"
-                        class=""></button>
-                    <button type="button" data-bs-target="#carousel-indicators-dot-vertical" data-bs-slide-to="2"
-                        class=""></button>
-                    <button type="button" data-bs-target="#carousel-indicators-dot-vertical" data-bs-slide-to="3"
-                        class="active" aria-current="true"></button>
-                    <button type="button" data-bs-target="#carousel-indicators-dot-vertical" data-bs-slide-to="4"
-                        class=""></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item">
-                        <img class="d-block w-100" alt="" src="{{ asset('assets/apa.jpg') }}">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" alt="" src="{{ asset('assets/Gelar Senja.JPG') }}">
-                    </div>
-                    <div class="carousel-item active carousel-item-start">
-                        <img class="d-block w-100" alt="" src="{{ asset('assets/marawis.jpg') }}">
-                    </div>
-                    <div class="carousel-item carousel-item-next carousel-item-start">
-                        <img class="d-block w-100" alt="" src="{{ asset('assets/Putsal1.jpg') }}">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" alt="" src="{{ asset('assets/Paskibra.jpg') }}">
-                    </div>
-                </div>
-            </div>
+            <h1>Home</h1>
         </section>
     </div>
 </div>

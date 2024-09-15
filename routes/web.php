@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Admin\Gallery\EditGallery;
+use App\Livewire\Admin\DataGuru\EditDataGuru;
 use App\Livewire\Admin\Home as AdminHome;
 
 // Prestasi
@@ -16,7 +16,17 @@ use App\Livewire\Admin\Eskul\EditEskul;
 // Gallery
 use App\Livewire\Admin\Gallery as AdminGallery;
 use App\Livewire\Admin\Gallery\AddGallery;
+use App\Livewire\Admin\Gallery\EditGallery;
 
+// Data Guru
+use App\Livewire\Admin\DataGuru as AdminDataGuru;
+use App\Livewire\Admin\DataGuru\AddDataGuru;
+
+// Sarana Prasarana
+use App\Livewire\Admin\Sapras as AdminSapras;
+
+// User Admin
+use App\Livewire\Admin\UserAdmin;
 
 // App
 use App\Livewire\App\Contact;
@@ -80,7 +90,23 @@ Route::prefix('panel-admin')->middleware('isLogin')->group(function () {
             Route::get('{id}/edit-gallery', EditGallery::class);
         }
     );
-    Route::get('data-guru', );
-    Route::get('sarana-prasarana', );
-    Route::get('user-admin', );
+    Route::prefix('data-guru')->group(
+        function () {
+            Route::get('', AdminDataGuru::class);
+            Route::get('add-data-guru', AddDataGuru::class);
+            Route::get('{id}/edit-data-guru', EditDataGuru::class);
+        }
+    );
+
+    Route::prefix('sarana-prasarana')->group(
+        function () {
+            Route::get('', AdminSapras::class);
+        }
+    );
+
+    Route::prefix('user-admin')->group(
+        function () {
+            Route::get('', UserAdmin::class);
+        }
+    );
 });

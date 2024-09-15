@@ -1,10 +1,20 @@
 <div>
-    <header class="navbar navbar-expand-md sticky-top d-print-none">
+    <nav class="navbar navbar-expand-md sticky-top d-print-none">
         <div class=" container-xl">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
+            <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse"
                 aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-x d-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M18 6l-12 12" />
+                        <path d="M6 6l12 12" />
+                    </svg>
+                </span>
             </button>
+
             <h1 class="navbar-brand  d-none-navbar-horizontal pe-0 pe-md-3">
                 <a href="/" wire:navigate style="text-decoration: none">
                     <img src="{{ asset('assets/logo.png') }}" width="110" height="32" alt="Tabler"
@@ -68,8 +78,8 @@
                     </div>
                 </div>
                 <div class=" d-flex d-md-flex" style="">
-                    <a href="?theme=dark" wire:navigate class=" nav-link px-0 hide-theme-dark" title="Enable dark mode"
-                        data-bs-toggle="tooltip" data-bs-placement="bottom">
+                    <a href="?theme=dark" wire:navigate class=" nav-link px-0 hide-theme-dark"
+                        title="Enable dark mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
                         <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -92,7 +102,7 @@
                     </a>
                 </div>
                 <div class=" d-flex d-md-flex" style="">
-                    <a href="/login-admin" wire:navigate class="nav-link px-0 " title="Panel Admin"
+                    <a href="/panel-admin" wire:navigate class="nav-link px-0 " title="Panel Admin"
                         data-bs-toggle="tooltip" data-bs-placement="bottom">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -106,10 +116,9 @@
                 </div>
             </div>
         </div>
-    </header>
-
-    <header class="navbar-expand-md">
-        <div class="collapse navbar-collapse" id="navbar-menu">
+    </nav>
+    <nav class="navbar-expand-md">
+        <div id="navbar-menu" class="collapse navbar-collapse ">
             <div class="navbar">
                 <div class=" container-xl">
                     <div class="row flex-fill align-items-center">
@@ -263,5 +272,15 @@
                 </div>
             </div>
         </div>
-    </header>
+    </nav>
+
+    <script>
+        document.querySelector('#navbar-toggler').addEventListener('click', function() {
+            const navbarMenu = document.querySelector('#navbar-menu');
+            navbarMenu.classList.toggle('show');
+
+            document.querySelector('.navbar-toggler-icon').classList.toggle('d-none');
+            document.querySelector('.navbar-toggler-x').classList.toggle('d-none');
+        });
+    </script>
 </div>

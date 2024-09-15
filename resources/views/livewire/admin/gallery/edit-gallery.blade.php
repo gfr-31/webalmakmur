@@ -81,12 +81,19 @@
                                     @enderror
                                 </div>
 
+                                <div class=" mb-3 text-end">
+                                    <div class="d-flex">
+                                        <button type="submit" class="btn btn-primary ms-auto">
+                                            Update data
+                                        </button>
+                                    </div>
+                                </div>
+
                                 <div>
                                     <!-- Foto -->
                                     <div class="card">
                                         <div class="card-header">
-                                            <h3 class="card-title">Foto</h3>
-                                            <div class=" col-auto ms-auto d-print-none">
+                                            <div class=" col-auto  d-print-none">
                                                 <div class=" btn-list">
                                                     <button type="button" wire:click="showModal"
                                                         class="btn btn-primary d-none d-sm-inline-block">
@@ -115,6 +122,7 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                            <h3 class=" ms-auto card-title">Foto</h3>
                                         </div>
                                         <div class="list-group list-group-flush overflow-auto"
                                             style="max-height: 25rem">
@@ -142,7 +150,13 @@
                                                             <button type="button"
                                                                 wire:click="deleteFoto('{{ $photo['key'] }}')"
                                                                 class="btn btn-outline-youtube btn-icon">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                <span wire:loading
+                                                                    wire:target="deleteFoto('{{ $photo['key'] }}')"
+                                                                    class="spinner-border spinner-border-sm"
+                                                                    role="status" aria-hidden="true"></span>
+                                                                <svg wire:loading.remove
+                                                                    wire:target="deleteFoto('{{ $photo['key'] }}')"
+                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="24" viewBox="0 0 24 24" fill="none"
                                                                     stroke="currentColor" stroke-width="2"
                                                                     stroke-linecap="round" stroke-linejoin="round"
@@ -168,13 +182,6 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="card-footer text-end">
-                                    <div class="d-flex">
-                                        <button type="submit" class="btn btn-primary ms-auto">
-                                            Update data
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
                         </form>
                     </div>
@@ -182,42 +189,6 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('tabler/dist/libs/fslightbox/index.js') }}" defer></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const fileInput = document.getElementById('fileInput');
-            const submitButton = document.getElementById('submitButton');
-
-            fileInput.addEventListener('change', function() {
-                if (fileInput.files.length > 0) {
-                    submitButton.disabled = false;
-                } else {
-                    submitButton.disabled = true;
-                }
-            });
-        });
-    </script>
-    <script>
-        document.getElementById('fileInput').addEventListener('change', function() {
-            var fileName = this.files[0].name;
-            var nextSibling = this.nextElementSibling;
-            nextSibling.innerText = fileName;
-            document.getElementById('submitButton').disabled = true;
-        });
-    </script>
-
-    <script>
-        window.addEventListener('show-modal', event => {
-            var modal = new bootstrap.Modal(document.getElementById('modal-report'));
-            modal.show();
-        });
-
-        window.addEventListener('close-modal', event => {
-            var modal = bootstrap.Modal.getInstance(document.getElementById('modal-report'))
-            modal.hide()
-        })
-    </script>
 
     <!-- Modal -->
     <div wire:ignore.self class="modal modal-blur fade" id="modal-report" tabindex="-1" aria-hidden="true">
@@ -246,4 +217,42 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ asset('tabler/dist/libs/fslightbox/index.js') }}" defer></script>
+
+    {{-- <script>
+        document.getElementById('fileInput').addEventListener('change', function() {
+            var fileName = this.files[0].name;
+            var nextSibling = this.nextElementSibling;
+            nextSibling.innerText = fileName;
+            document.getElementById('submitButton').disabled = true;
+        });
+    </script> --}}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('fileInput');
+            const submitButton = document.getElementById('submitButton');
+
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        window.addEventListener('show-modal', event => {
+            var modal = new bootstrap.Modal(document.getElementById('modal-report'));
+            modal.show();
+        });
+
+        window.addEventListener('close-modal', event => {
+            var modal = bootstrap.Modal.getInstance(document.getElementById('modal-report'))
+            modal.hide()
+        })
+    </script>
 </div>
