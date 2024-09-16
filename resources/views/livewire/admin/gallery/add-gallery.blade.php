@@ -54,7 +54,7 @@
                         <form wire:submit.prevent="add" class="card" enctype="multipart/form-data" id="uploadForm">
                             @csrf
                             <div class="card-header">
-                                <h4 class="card-title">Form Prestasi</h4>
+                                <h4 class="card-title">Form Gallery</h4>
                             </div>
                             <div class="card-body">
                                 @if (session()->has('message'))
@@ -94,8 +94,14 @@
                             </div>
                             <div class="card-footer text-end">
                                 <div class="d-flex">
-                                    <button type="submit" class="btn btn-primary ms-auto" id="submitButton">Send
-                                        data</button>
+                                    <button type="submit" class="btn btn-primary ms-auto" style="min-width: 100px;"
+                                        id="submitButton">
+                                        <span wire:loading wire:target="add" class="spinner-border spinner-border-sm"
+                                            role="status" aria-hidden="true"> </span>
+                                        <span wire:loading.remove wire:target="add">
+                                            Send data
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
                         </form>

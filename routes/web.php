@@ -1,6 +1,5 @@
 <?php
 
-use App\Livewire\Admin\DataGuru\EditDataGuru;
 use App\Livewire\Admin\Home as AdminHome;
 
 // Prestasi
@@ -21,9 +20,12 @@ use App\Livewire\Admin\Gallery\EditGallery;
 // Data Guru
 use App\Livewire\Admin\DataGuru as AdminDataGuru;
 use App\Livewire\Admin\DataGuru\AddDataGuru;
+use App\Livewire\Admin\DataGuru\EditDataGuru;
 
 // Sarana Prasarana
 use App\Livewire\Admin\Sapras as AdminSapras;
+use App\Livewire\Admin\Sapras\AddSapras;
+use App\Livewire\Admin\Sapras\EditSapras;
 
 // User Admin
 use App\Livewire\Admin\UserAdmin;
@@ -101,6 +103,8 @@ Route::prefix('panel-admin')->middleware('isLogin')->group(function () {
     Route::prefix('sarana-prasarana')->group(
         function () {
             Route::get('', AdminSapras::class);
+            Route::get('add-sarana-prasarana', AddSapras::class);
+            Route::get('{id}/edit-sarana-prasarana', EditSapras::class);
         }
     );
 

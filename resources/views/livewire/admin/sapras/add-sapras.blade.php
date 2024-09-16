@@ -8,13 +8,15 @@
                         Page
                     </div>
                     <h2 class="page-title">
-                        Add Data Guru
+                        Add Sarana Prasarana
                     </h2>
                 </div>
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="/panel-admin/data-guru" wire:navigate class="btn btn-dark d-none d-sm-inline-block">
+                        <a href="/panel-admin/sarana-prasarana" wire:navigate
+                            class="btn btn-dark d-none d-sm-inline-block" data-bs-toggle="modal"
+                            data-bs-target="#modal-report">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -24,9 +26,10 @@
                                 <path d="M9 14l-4 -4l4 -4" />
                                 <path d="M5 10h11a4 4 0 1 1 0 8h-1" />
                             </svg>
-                            Back To Data Guru
+                            Back To Sarana Prasarana
                         </a>
-                        <a href="/panel-admin/data-guru" wire:navigate class="btn btn-dark d-sm-none btn-icon">
+                        <a href="/panel-admin/sarana-prasarana" wire:navigate class="btn btn-dark d-sm-none btn-icon"
+                            data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -49,10 +52,10 @@
             <div class="row row-cards">
                 <div class="col-12">
                     <div class=" card">
-                        <form wire:submit.prevent="add" class="card" enctype="multipart/form-data">
+                        <form wire:submit.prevent="add" class="card" enctype="multipart/form-data" id="uploadForm">
                             @csrf
                             <div class="card-header">
-                                <h4 class="card-title">Form Data Guru</h4>
+                                <h4 class="card-title">Form Sarana Prasarana</h4>
                             </div>
                             <div class="card-body">
                                 @if (session()->has('message'))
@@ -71,51 +74,30 @@
                                     @enderror
                                 </div>
 
-                                <!-- Position -->
-                                <div class="mb-3">
-                                    <label class="form-label">Position</label>
-                                    <input wire:model="position" type="text" class="form-control"
-                                        placeholder="Input Position">
-                                    @error('position')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                {{-- Relegion --}}
+                                {{-- Condition --}}
                                 <div class="mb-3">
                                     <div wire:ignore>
-                                        <label class="form-label">Relegion</label>
-                                        <select wire:model="relegion" id="select-user" placeholder="Choose a Religion">
+                                        <label class="form-label">Condition</label>
+                                        <select wire:model="condition" id="select-user"
+                                            placeholder="Choose a Condition">
                                             <option value=""></option>
-                                            <option value="Islam">Islam</option>
-                                            <option value="Kristen Protestan">Kristen Protestan</option>
-                                            <option value="Kristen Katolik">Kristen Katolik</option>
-                                            <option value="Hindu">Hindi</option>
-                                            <option value="Budha">Budha</option>
-                                            <option value="Konghucu">Konghucu</option>
+                                            <option value="Baik">Baik</option>
+                                            <option value="Rusak Ringan">Rusak Ringan</option>
+                                            <option value="Rusak Sedang">Rusak Sedang</option>
+                                            <option value="Rusak Berat">Rusak Berat</option>
                                         </select>
                                     </div>
-                                    @error('relegion')
+                                    @error('condition')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                {{-- Gender --}}
+                                {{-- Total --}}
                                 <div class="mb-3">
-                                    <div class=" d-flex">
-                                        <div class="form-label" style="margin-right: 20px">Gender : </div>
-                                        <label class="form-check form-check-inline">
-                                            <input wire:model="gender" class="form-check-input" type="radio"
-                                                name="radios-inline" value="L">
-                                            <span class="form-check-label">Male</span>
-                                        </label>
-                                        <label class="form-check form-check-inline">
-                                            <input wire:model="gender" class="form-check-input" type="radio"
-                                                name="radios-inline" value="P">
-                                            <span class="form-check-label">Female</span>
-                                        </label>
-                                    </div>
-                                    @error('gender')
+                                    <label class="form-label">Total</label>
+                                    <input wire:model="total" type="number" class="form-control"
+                                        placeholder="Input Total">
+                                    @error('total')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -123,8 +105,8 @@
                                 <!-- Foto -->
                                 <div class="mb-3">
                                     <label class="form-label">Foto</label>
-                                    <input wire:model="foto" type="file" id="fileInput"class="form-control"
-                                        placeholder="Input Foto">
+                                    <input wire:model="foto" type="file" class="form-control"
+                                        placeholder="Input Foto" multiple id="fileInput">
                                     @error('foto')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -132,8 +114,8 @@
                             </div>
                             <div class="card-footer text-end">
                                 <div class="d-flex">
-                                    <button type="submit" class="btn btn-primary ms-auto" style="min-width: 100px;"
-                                        id="submitButton">
+                                    <button type="submit" class="btn btn-primary ms-auto" id="submitButton"
+                                        style="min-width: 100px;">
                                         <span wire:loading wire:target="add" class="spinner-border spinner-border-sm"
                                             role="status" aria-hidden="true"> </span>
                                         <span wire:loading.remove wire:target="add">
@@ -156,6 +138,20 @@
                     field: "text",
                     direction: "asc"
                 }
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const fileInput = document.getElementById('fileInput');
+                const submitButton = document.getElementById('submitButton');
+
+                fileInput.addEventListener('change', function() {
+                    if (fileInput.files.length > 0) {
+                        submitButton.disabled = false;
+                    } else {
+                        submitButton.disabled = true;
+                    }
+                });
             });
         </script>
         <script>
