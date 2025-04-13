@@ -14,10 +14,11 @@ jobs:
         run: |
           composer update laravel/framework --with-all-dependencies
 
-      - name: Commit & Push changes
+      - name: Push changes
         run: |
-          git config user.name "gfr-31"
-          git config user.email "fikaaliyaputri@gmail.com"
-          git add composer.lock
-          git commit -m "Update Laravel Framework via GitHub Actions"
-          git push
+           git config user.name "gfr-31"
+           git config user.email "fikaaliyaputri@gmail.com"
+           git add composer.lock
+           git commit -m "Update Laravel Framework via GitHub Actions"
+           git push https://gfr-31:${{ secrets.GH_TOKEN }}@github.com/gfr-31/webalmakmur.git HEAD:main
+
