@@ -1,0 +1,23 @@
+name: Composer Update
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v3
+
+      - name: Update Laravel Framework
+        run: |
+          composer update laravel/framework --with-all-dependencies
+
+      - name: Commit & Push changes
+        run: |
+          git config user.name "gfr-31"
+          git config user.email "fikaaliyaputri@gmail.com"
+          git add composer.lock
+          git commit -m "Update Laravel Framework via GitHub Actions"
+          git push
